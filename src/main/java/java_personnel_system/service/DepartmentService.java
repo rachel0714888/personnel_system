@@ -42,14 +42,20 @@ public class DepartmentService {
 
     public static void removeDepartmentName() throws Exception{
         Print.print("请输入要删除的部门名");
-        String departmentName = sc.nextLine();
+        String departmentName = sc.next();
         if (!departmentDao.departmentExist(departmentName)){
             Print.print("部门不存在，请重新输入");
             removeDepartmentName();
         }
-        staffDao.autoUpdateStaffDepartmentId(departmentDao.selectLikeDepartmentNameNoPrint(departmentName));
-        departmentDao.removeDepartmentName(departmentName);
-        departmentDao.departmentAlter();
+        Print.print("该部门还要员工，请确认是否删除");
+        Print.print("1.是");
+        Print.print("2.否");
+        int confirm = sc.nextInt();
+        if (confirm==1){
+            staffDao.autoUpdateStaffDepartmentId(departmentDao.selectLikeDepartmentNameNoPrint(departmentName));
+            departmentDao.removeDepartmentName(departmentName);
+            departmentDao.departmentAlter();
+        }
     }
 
     public static void changeDepartmentMsg() throws Exception{
