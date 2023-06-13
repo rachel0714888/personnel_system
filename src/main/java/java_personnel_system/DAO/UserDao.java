@@ -8,14 +8,13 @@ import java_personnel_system.pojo.User;
  */
 public interface UserDao {
 
-    /**
-     * 将输入进来的用户和数据库中的用户进行匹配，如果用户名存在且密码相同为匹配成功，将该数据的用户名、密码、状态、权限保存到当前用户
-     *
+
+    /**将输入进来的用户和数据库中的用户进行匹配，如果用户名存在且密码相同为匹配成功，将该数据的用户名、密码、状态、权限保存到当前用户
      * @param inputUser 保存要匹配的用户名和密码
-     * @return 返回true表示匹配成功，反之匹配失败
-     * @throws Exception 如果出现SQLException，抛出异常
+     * @return 登陆成功返回1 离职返回2 密码错误返回3 用户名不存在返回4
+     * @throws Exception
      */
-    boolean match(User inputUser) throws Exception;
+    int match(User inputUser) throws Exception;
 
     /**
      * 插入一条用户数据
@@ -32,6 +31,15 @@ public interface UserDao {
      * @throws Exception 如果出现SQLException，抛出异常
      */
     void idRemove(int userId) throws Exception;
+
+    /**
+     * 判断输入的用户id是否存在
+     *
+     * @param userId 存放要判断的id
+     * @return 存在返回true，反之返回false
+     * @throws Exception 如果出现SQLException，抛出异常
+     */
+    boolean userIdExist(int userId) throws Exception;
 
     /**
      * 判断输入的用户名是否存在

@@ -71,26 +71,25 @@ public class NoticeDaoimpl implements NoticeDao {
     @Override
     public void selectAllNotice() throws Exception {
         boolean locked = false;
-        try{
+        try {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from notice_table";
+                String sql = "select * from notice";
                 PreparedStatement ps = c.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()){
-                    Print.noticeAllMsgPrint(new Notice(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4)));
+                while (rs.next()) {
+                    Print.noticeAllMsgPrint(rs.getInt(1), rs.getString(2),
+                            rs.getString(3), rs.getString(4));
                 }
                 MainView.cp.returnConnection(c);
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再进行操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -99,27 +98,25 @@ public class NoticeDaoimpl implements NoticeDao {
     @Override
     public boolean noticeIdExist(int noticeId) throws Exception {
         boolean locked = false;
-        try{
+        try {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 Connection c = MainView.cp.getConnection();
                 String sql = "select * from notice_table where notice_id = ?";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setInt(1,noticeId);
+                ps.setInt(1, noticeId);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
+                if (rs.next()) {
                     return true;
                 }
                 MainView.cp.returnConnection(c);
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再进行操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -129,27 +126,25 @@ public class NoticeDaoimpl implements NoticeDao {
     @Override
     public boolean noticeNameExist(String noticeName) throws Exception {
         boolean locked = false;
-        try{
+        try {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 Connection c = MainView.cp.getConnection();
                 String sql = "select * from notice_table where notice_name like concat('%',?,'%') ";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,noticeName);
+                ps.setString(1, noticeName);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
+                if (rs.next()) {
                     return true;
                 }
                 MainView.cp.returnConnection(c);
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再进行操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -159,27 +154,25 @@ public class NoticeDaoimpl implements NoticeDao {
     @Override
     public boolean noticeContentExist(String noticeContent) throws Exception {
         boolean locked = false;
-        try{
+        try {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 Connection c = MainView.cp.getConnection();
                 String sql = "select * from notice_table where notice_content like concat('%',?,'%') ";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,noticeContent);
+                ps.setString(1, noticeContent);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
+                if (rs.next()) {
                     return true;
                 }
                 MainView.cp.returnConnection(c);
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再进行操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -189,27 +182,26 @@ public class NoticeDaoimpl implements NoticeDao {
     @Override
     public void selectNoticeName(String noticeName) throws Exception {
         boolean locked = false;
-        try{
+        try {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from notice_table where notice_name like concat('%',?,'%')";
+                String sql = "select * from notice where notice_name like concat('%',?,'%')";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,noticeName);
+                ps.setString(1, noticeName);
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()){
-                    Print.noticeAllMsgPrint(new Notice(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4)));
+                while (rs.next()) {
+                    Print.noticeAllMsgPrint(rs.getInt(1), rs.getString(2),
+                            rs.getString(3), rs.getString(4));
                 }
                 MainView.cp.returnConnection(c);
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再进行操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -218,27 +210,26 @@ public class NoticeDaoimpl implements NoticeDao {
     @Override
     public void selectNoticeContent(String noticeContent) throws Exception {
         boolean locked = false;
-        try{
+        try {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from notice_table where notice_content like concat('%',?,'%')";
+                String sql = "select * from notice where notice_content like concat('%',?,'%')";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,noticeContent);
+                ps.setString(1, noticeContent);
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()){
-                    Print.noticeAllMsgPrint(new Notice(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4)));
+                while (rs.next()) {
+                    Print.noticeAllMsgPrint(rs.getInt(1), rs.getString(2),
+                            rs.getString(3), rs.getString(4));
                 }
                 MainView.cp.returnConnection(c);
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再进行操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }

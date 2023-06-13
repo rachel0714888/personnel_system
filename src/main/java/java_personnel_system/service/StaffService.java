@@ -31,9 +31,13 @@ public class StaffService {
         String staffEducation = sc.next();
         Print.print("请输入您想要添加的员工的身份证：");
         String staffIdentityId = sc.next();
+        if (staffDao.staffIdentityIdNameExist(staffIdentityId)) {
+            Print.print("员工已存在");
+            MainView.staffView();
+        }
         Print.print("请输入您想要添加的员工的电话号码：");
         String staffPhonenum = sc.next();
-        if (staffDao.staffExist(staffIdentityId, staffPhonenum)) {
+        if (staffDao.staffPhoneNumNameExist(staffPhonenum)) {
             Print.print("员工已存在");
             MainView.staffView();
         }
@@ -43,6 +47,10 @@ public class StaffService {
     public synchronized static void removeStaffId() throws Exception {
         Print.print("请输入您想要删除的员工id：");
         int staffId = sc.nextInt();
+        if (!staffDao.staffIdExist(staffId)){
+            Print.print("员工不存在");
+            removeStaffId();
+        }
         staffDao.removeStaffId(staffId);
         staffDao.tableAlter();
     }
@@ -50,6 +58,10 @@ public class StaffService {
     public synchronized static void removeStaffName() throws Exception {
         Print.print("请输入您想要删除的员工姓名：");
         String staffName = sc.next();
+        if (!staffDao.staffNameExist(staffName)){
+            Print.print("员工不存在");
+            removeStaffName();
+        }
         staffDao.removeStaffName(staffName);
         staffDao.tableAlter();
     }
@@ -57,6 +69,10 @@ public class StaffService {
     public static void updateStaffMsg() throws Exception {
         Print.print("请输入您想要修改的员工的员工id");
         int staffId = sc.nextInt();
+        if (!staffDao.staffIdExist(staffId)){
+            Print.print("员工不存在");
+            updateStaffMsg();
+        }
         Print.print("请输入您修改后的员工姓名：");
         String staffName = sc.next();
         Print.print("请输入您修改后的员工性别：");
@@ -96,6 +112,10 @@ public class StaffService {
     public static void selectStaffId() throws Exception {
         Print.print("请输入您想要查询的员工的员工id");
         int staffId = sc.nextInt();
+        if (!staffDao.staffIdExist(staffId)){
+            Print.print("员工不存在");
+            selectStaffId();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffId(staffId);
@@ -112,6 +132,10 @@ public class StaffService {
     public static void selectStaffName() throws Exception {
         Print.print("请输入您要查询的员工姓名：");
         String staffName = sc.next();
+        if (!staffDao.staffNameExist(staffName)){
+            Print.print("员工不存在");
+            selectStaffName();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffName(staffName);
@@ -121,6 +145,10 @@ public class StaffService {
     public static void selectStaffSex() throws Exception {
         Print.print("请输入您要查询的员工性别：");
         String staffSex = sc.next();
+        if (!staffDao.staffSexExist(staffSex)){
+            Print.print("员工不存在");
+            selectStaffSex();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffSex(staffSex);
@@ -130,6 +158,10 @@ public class StaffService {
     public static void selectStaffDepartmentId() throws Exception {
         Print.print("请输入您要查询的员工的部门id：");
         int sdepartmentId = sc.nextInt();
+        if (!staffDao.staffDepartmentIdExist(sdepartmentId)){
+            Print.print("员工不存在");
+            selectStaffDepartmentId();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffDepartmentId(sdepartmentId);
@@ -139,6 +171,10 @@ public class StaffService {
     public static void selectStaffPrositionId() throws Exception {
         Print.print("请输入您要查询的员工的职位id：");
         int spositionId = sc.nextInt();
+        if (!staffDao.staffPositionIdExist(spositionId)){
+            Print.print("员工不存在");
+            selectStaffPrositionId();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffPrositionId(spositionId);
@@ -148,6 +184,10 @@ public class StaffService {
     public static void selectStaffNation() throws Exception {
         Print.print("请输入您要查询的员工的民族：");
         String staffNation = sc.next();
+        if (!staffDao.staffNationNameExist(staffNation)){
+            Print.print("员工不存在");
+            selectStaffNation();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffNation(staffNation);
@@ -157,6 +197,10 @@ public class StaffService {
     public static void selectStaffEducation() throws Exception {
         Print.print("请输入您要查询的员工的学历：");
         String staffEducation = sc.next();
+        if (!staffDao.staffEducationNameExist(staffEducation)){
+            Print.print("员工不存在");
+            selectStaffEducation();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffEducation(staffEducation);
@@ -166,6 +210,10 @@ public class StaffService {
     public static void selectStaffIdentityId() throws Exception {
         Print.print("请输入您要查询的员工的身份证：");
         String staffIdentityId = sc.next();
+        if (!staffDao.staffIdentityIdNameExist(staffIdentityId)){
+            Print.print("员工不存在");
+            selectStaffIdentityId();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffIdentityId(staffIdentityId);
@@ -175,6 +223,10 @@ public class StaffService {
     public static void selectStaffPhonenum() throws Exception {
         Print.print("请输入您要查询的员工的电话号码：");
         String staffPhonenum = sc.next();
+        if (!staffDao.staffPhoneNumNameExist(staffPhonenum)){
+            Print.print("员工不存在");
+            selectStaffPhonenum();
+        }
         Print.print("正在查询员工信息...");
         Thread.sleep(3000);
         staffDao.selectStaffPhonenum(staffPhonenum);

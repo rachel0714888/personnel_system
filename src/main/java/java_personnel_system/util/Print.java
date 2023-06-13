@@ -2,7 +2,9 @@ package java_personnel_system.util;
 
 import java_personnel_system.pojo.*;
 
-/**所有的格式化打印语句
+/**
+ * 所有的格式化打印语句
+ *
  * @auther Rachel
  * @date 2023/6/11 11:21
  */
@@ -39,7 +41,7 @@ public class Print {
                 " 员工id：" + user.getUserStaffId() + " 用户状态：" + isOnwork + " 用户权限：" + isAuthority);
     }
 
-    public static void ordinaryUserMsgPrint(User user){
+    public static void ordinaryUserMsgPrint(User user) {
         print("用户id：" + user.getUserId() + " 用户名：" + user.getUserName() + " 密码：" + user.getUserPassword() +
                 " 员工id：" + user.getUserStaffId());
     }
@@ -52,14 +54,15 @@ public class Print {
         print("职位id：" + position.getPositionId() + " 职位名：" + position.getPositionName());
     }
 
-    public static void staffAllMsgPrint(Staff staff) {
-        print("员工id：" + staff.getStaffId() + " 员工姓名：" + staff.getStaffName() + " 员工性别：" + staff.getStaffSex()
-                            +" 员工部门id："+staff.getSdepartmentId()+" 员工职位id："+staff.getSpositionId()+" 民族:"+staff.getStaffNation()
-                            +" 教育背景："+staff.getStaffEducation()+" 身份证号："+staff.getStaffIdentityId()+" 手机号:"+staff.getStaffPhonenum());
+    public static void staffAllMsgPrint(int staffid, String staffName, String staffSex, String staffDepartment, String staffPosition,
+                                        String staffNation,String staffEducation,String staffIdentity,String staffPhonenum) {
+        print("员工id：" + staffid + " 员工姓名：" + staffName + " 员工性别：" +
+                " 员工部门：" + staffDepartment + " 员工职位：" + staffPosition + " 民族:" + staffNation
+                + " 教育背景：" + staffEducation + " 身份证号：" + staffIdentity + " 手机号:" + staffPhonenum);
     }
 
-    public static void noticeAllMsgPrint(Notice notice) {
-        print("公告id：" + notice.getNoticeId() + " 公告内容：" + notice.getNoticeContent()+" 公告发布者："+notice.getNoticePublisherId()
-                +" 公告名:"+notice.getNoticeName());
+    public static void noticeAllMsgPrint(int noticeId,String noticeContent,String noticePublicher,String noticeName) {
+        print("公告名：" + noticeId + " 公告内容：" + noticeContent + " 公告发布者：" + noticePublicher
+                + " 公告名:" + noticeName);
     }
 }

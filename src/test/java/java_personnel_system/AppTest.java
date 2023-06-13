@@ -22,14 +22,6 @@ public class AppTest {
 
     @Test
     public void test() throws Exception {
-        Runnable r = new Runnable() {
-            @SneakyThrows
-            @Override
-            public void run() {
-                MainView.mainView();
-            }
-        };
-        MainView.threadPool.execute(r);
         UserService.login();
     }
 

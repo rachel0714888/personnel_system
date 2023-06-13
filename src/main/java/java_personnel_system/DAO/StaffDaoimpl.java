@@ -20,26 +20,262 @@ public class StaffDaoimpl implements StaffDao {
     Object o = new Object();
     Lock lock = new ReentrantLock();
 
+
     @Override
-    public boolean staffExist(String staffIdentityId,String staffPhonenum) throws Exception {
-        Connection c = MainView.cp.getConnection();
-        String sql = "select staff_identityid,staff_phonenum from staff_table";
-        PreparedStatement ps = c.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            if (rs.getString("staff_identityid").equals(staffIdentityId)||
-            rs.getString("staff_phonenum").equals(staffPhonenum)){
+    public boolean staffIdExist(int staffId) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where staff_id = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, staffId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
                 MainView.cp.returnConnection(c);
-                return true;
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
             }
         }
-        MainView.cp.returnConnection(c);
+        return false;
+    }
+
+    @Override
+    public boolean staffNameExist(String staffName) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where staff_name like concat('%',?,'%')";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, staffName);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean staffSexExist(String staffSex) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where staff_sex = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, staffSex);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean staffDepartmentIdExist(int departmentId) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where sdepartment_id = ? ";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, departmentId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean staffPositionIdExist(int positionId) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where sposition_id = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, positionId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean staffNationNameExist(String nationName) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where staff_nation like concat('%',?,'%')";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, nationName);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean staffEducationNameExist(String educationName) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where staff_education like concat('%',?,'%')";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, educationName);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean staffIdentityIdNameExist(String identityId) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where staff_identityId = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, identityId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean staffPhoneNumNameExist(String phoneNum) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_table where staff_phonenum = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, phoneNum);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
         return false;
     }
 
     @Override
     public void staffAdd(Staff staff) throws Exception {
-        synchronized (o){
+        synchronized (o) {
             Connection c = MainView.cp.getConnection();
             String sql = "insert into staff_table(staff_name,staff_sex,sdepartment_id,sposition_id,staff_nation,staff_education,staff_identityid,staff_phonenum) values(?,?,?,?,?,?,?,?) ";
             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -58,7 +294,7 @@ public class StaffDaoimpl implements StaffDao {
 
     @Override
     public void removeStaffId(int staffId) throws Exception {
-        synchronized (o){
+        synchronized (o) {
             Connection c = MainView.cp.getConnection();
             String sql = "delete from staff_table where staff_id = ? ";
             PreparedStatement ps = c.prepareStatement(sql);
@@ -70,7 +306,7 @@ public class StaffDaoimpl implements StaffDao {
 
     @Override
     public void removeStaffName(String staffName) throws Exception {
-        synchronized (o){
+        synchronized (o) {
             Connection c = MainView.cp.getConnection();
             String sql = "delete from staff_table where staff_name = ? ";
             PreparedStatement ps = c.prepareStatement(sql);
@@ -91,11 +327,11 @@ public class StaffDaoimpl implements StaffDao {
 
     @Override
     public void autoUpdateStaffPositionId(int staffId) throws Exception {
-        synchronized (o){
+        synchronized (o) {
             Connection c = MainView.cp.getConnection();
             String sql = "update staff_table set sposition_id = 12 where staff_id = ?";
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setInt(1,staffId);
+            ps.setInt(1, staffId);
             ps.execute();
             MainView.cp.returnConnection(c);
         }
@@ -103,11 +339,11 @@ public class StaffDaoimpl implements StaffDao {
 
     @Override
     public void autoUpdateStaffDepartmentId(int staffId) throws Exception {
-        synchronized (o){
+        synchronized (o) {
             Connection c = MainView.cp.getConnection();
             String sql = "update staff_table set sdepartment_id = 6 where staff_id = ?";
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setInt(1,staffId);
+            ps.setInt(1, staffId);
             ps.execute();
             MainView.cp.returnConnection(c);
         }
@@ -115,19 +351,19 @@ public class StaffDaoimpl implements StaffDao {
 
     @Override
     public void updateStaffMsg(Staff staff) throws Exception {
-        synchronized (o){
+        synchronized (o) {
             Connection c = MainView.cp.getConnection();
             String sql = "update staff_table set staff_name = ?,staff_sex=?,sdepartment_id=?,sposition_id=?,staff_nation=?,staff_education=?,staff_identityid=?,staff_phonenum=? where staff_id = ?";
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setString(1,staff.getStaffName());
-            ps.setString(2,staff.getStaffSex());
-            ps.setInt(3,staff.getSdepartmentId());
-            ps.setInt(4,staff.getSpositionId());
-            ps.setString(5,staff.getStaffNation());
-            ps.setString(6,staff.getStaffEducation());
-            ps.setString(7,staff.getStaffIdentityId());
-            ps.setString(8,staff.getStaffPhonenum());
-            ps.setInt(9,staff.getStaffId());
+            ps.setString(1, staff.getStaffName());
+            ps.setString(2, staff.getStaffSex());
+            ps.setInt(3, staff.getSdepartmentId());
+            ps.setInt(4, staff.getSpositionId());
+            ps.setString(5, staff.getStaffNation());
+            ps.setString(6, staff.getStaffEducation());
+            ps.setString(7, staff.getStaffIdentityId());
+            ps.setString(8, staff.getStaffPhonenum());
+            ps.setInt(9, staff.getStaffId());
             ps.execute();
             MainView.cp.returnConnection(c);
         }
@@ -135,13 +371,13 @@ public class StaffDaoimpl implements StaffDao {
 
     @Override
     public void ordinaryUserUpdateStaffMsg(String staffName, String staffIdentityId, String staffPhonenum) throws Exception {
-        synchronized (o){
+        synchronized (o) {
             Connection c = MainView.cp.getConnection();
             String sql = "update staff_table set staff_name = ?,staff_identityid=?,staff_phonenum=? where staff_id = ?";
             PreparedStatement ps = c.prepareStatement(sql);
-            ps.setString(1,staffName);
-            ps.setString(2,staffIdentityId);
-            ps.setString(3,staffPhonenum);
+            ps.setString(1, staffName);
+            ps.setString(2, staffIdentityId);
+            ps.setString(3, staffPhonenum);
             ps.setInt(4, MainView.currentUser.getUserStaffId());
             ps.execute();
             MainView.cp.returnConnection(c);
@@ -153,28 +389,26 @@ public class StaffDaoimpl implements StaffDao {
         boolean locked = false;
         try {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
-            if (locked){
+            if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table";
+                String sql = "select * from staff_msg";
                 PreparedStatement ps = c.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),
-                            rs.getString(3),rs.getInt(4),
-                            rs.getInt(5),rs.getString(6),
-                            rs.getString(7),rs.getString(8),
-                            rs.getString(9)));
+                while (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
                 }
                 MainView.cp.returnConnection(c);
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再进行操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -187,27 +421,26 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where staff_id like concat('%',?,'%')";
+                String sql = "select * from staff_msg where staff_id like concat('%',?,'%')";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setInt(1,staffId);
+                ps.setInt(1, staffId);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -220,27 +453,26 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where staff_name like concat('%',?,'%')";
+                String sql = "select * from staff_msg where staff_name like concat('%',?,'%')";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,staffName);
+                ps.setString(1, staffName);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -253,27 +485,26 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where staff_sex like concat('%',?,'%')";
+                String sql = "select * from staff_msg where staff_sex like concat('%',?,'%')";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,staffSex);
+                ps.setString(1, staffSex);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -286,27 +517,27 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where sdepartment_id like concat('%',?,'%') ";
+                String sql = "select * from staff_msg where sdepartment_id like concat('%',?,'%') ";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setInt(1,sdepartmentId);
+                ps.setInt(1, sdepartmentId);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -319,27 +550,27 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where sposition_id like concat('%',?,'%') ";
+                String sql = "select * from staff_msg where sposition_id like concat('%',?,'%') ";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setInt(1,spositionId);
+                ps.setInt(1, spositionId);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -352,27 +583,26 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where staff_nation like concat('%',?,'%') ";
+                String sql = "select * from staff_msg where staff_nation like concat('%',?,'%') ";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,staffNation);
+                ps.setString(1, staffNation);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -385,27 +615,26 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where staff_education like concat('%',?,'%') ";
+                String sql = "select * from staff_msg where staff_education like concat('%',?,'%') ";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,staffEducation);
+                ps.setString(1, staffEducation);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -418,27 +647,26 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where staff_identifyid like concat('%',?,'%') ";
+                String sql = "select * from staff_msg where staff_identifyid = ?";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,staffIdentityId);
+                ps.setString(1, staffIdentityId);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }
@@ -451,27 +679,26 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_table where staff_phonenum like concat('%',?,'%') ";
+                String sql = "select * from staff_msg where staff_phonenum = ?";
                 PreparedStatement ps = c.prepareStatement(sql);
-                ps.setString(1,staffPhonenum);
+                ps.setString(1, staffPhonenum);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
-                    Print.staffAllMsgPrint(new Staff(rs.getInt(1),rs.getString(2),rs.getString(3),
-                            rs.getInt(4),rs.getInt(5),rs.getString(6),rs.getString(7),
-                            rs.getString(8),rs.getString(9)));
-                }
-                else {
+                if (rs.next()) {
+                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
+                            rs.getString(9), rs.getString(19),
+                            rs.getString(17), rs.getString(12),
+                            rs.getString(13), rs.getString(14),
+                            rs.getString(15));
+                } else {
                     Print.print("查无此人");
                 }
-            }
-            else {
+            } else {
                 Print.print("网络繁忙，请稍后再试");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
-            if (locked){
+        } finally {
+            if (locked) {
                 lock.unlock();
             }
         }

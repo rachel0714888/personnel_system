@@ -35,8 +35,9 @@ public class UserService {
         if (confirmCode.equalsIgnoreCase(inputConfirmCode)) {
             Print.print("验证码通过,正在验证用户名和密码,请稍后...");
             Thread.sleep(3000);
-            boolean isLogin = userDao.match(inputUser);
-            if (isLogin) {
+            int isLogin = userDao.match(inputUser);
+            if (isLogin==1) {
+                Print.print("登陆成功");
                 //登陆成功，判断权限，根据不同的权限进入不同的操作页面
                 int authority = MainView.currentUser.getUserAuthority();
                 if (authority == 0) {
@@ -46,9 +47,15 @@ public class UserService {
                 } else if (authority == 2) {
                     OrdinaryUserView.ordinaryUserView();
                 }
-            } else {
-                //登录失败，回到登录界面
-                Print.print("用户不存在，请重新输入");
+
+            } else if (isLogin==2){
+                Print.print("用户已离职");
+                login();
+            }else if (isLogin==3){
+                Print.print("密码错误");
+                login();
+            }else if (isLogin==4){
+                Print.print("用户不存在");
                 login();
             }
         } else {
@@ -112,22 +119,37 @@ public class UserService {
     public synchronized static void userIdRemove() throws Exception {
         Print.print("请输入您想要删除的用户id：");
         int inputUserId = sc.nextInt();
-        userDao.idRemove(inputUserId);
-        userDao.userTableAlter();
+        if (userDao.userIdExist(inputUserId)){
+            userDao.idRemove(inputUserId);
+            userDao.userTableAlter();
+        }
+        else {
+            Print.print("用户不存在");
+        }
     }
 
     public synchronized static void userNameRemove() throws Exception {
         Print.print("请输入您想要删除的用户名：");
         String inputUserName = sc.nextLine();
-        userDao.nameRemove(inputUserName);
-        userDao.userTableAlter();
+        if (userDao.userNameExist(inputUserName)){
+            userDao.nameRemove(inputUserName);
+            userDao.userTableAlter();
+        }
+        else {
+            Print.print("用户不存在");
+        }
     }
 
     public synchronized static void userStaffIdRemove() throws Exception {
         Print.print("请输入您想要删除的用户员工id：");
         int inputUserStaffId = sc.nextInt();
-        userDao.staffIdRemove(inputUserStaffId);
-        userDao.userTableAlter();
+        if (userDao.userStaffIdExist(inputUserStaffId)){
+            userDao.staffIdRemove(inputUserStaffId);
+            userDao.userTableAlter();
+        }
+        else {
+            Print.print("用户不存在");
+        }
     }
 
     public synchronized static void userIsWorkRemove() throws Exception {
@@ -151,6 +173,10 @@ public class UserService {
     public synchronized static void userChange() throws Exception {
         Print.print("请输入要修改的用户id：");
         int userId = sc.nextInt();
+        if (!userDao.userIdExist(userId)){
+            Print.print("用户不存在");
+            userChange();
+        }
         Print.print("请输入修改后的用户名：");
         String userName = sc.next();
         Print.print("请输入修改后的用户密码：");
@@ -196,6 +222,10 @@ public class UserService {
     public static void userLikeNameSelect() throws Exception {
         Print.print("请输入要查询的用户名：");
         String userName = sc.next();
+        if (!userDao.userNameExist(userName)){
+            Print.print("用户不存在");
+            userLikeNameSelect();
+        }
         Print.print("正在为您查询用户信息...");
         Thread.sleep(3000);
         userDao.userLikeNameSelect(userName);

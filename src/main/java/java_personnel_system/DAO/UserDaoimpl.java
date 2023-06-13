@@ -26,38 +26,90 @@ public class UserDaoimpl implements UserDao {
 
     @Override
     public boolean userNameExist(String inputUserName) throws Exception {
-        Connection c = MainView.cp.getConnection();
-        String sql = "select user_name from user_table";
-        PreparedStatement ps = c.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            if (rs.getString("user_name").equals(inputUserName)) {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from user_table where user_name = ? ";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, inputUserName);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()){
+                    return true;
+                }
                 MainView.cp.returnConnection(c);
-                return true;
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
             }
         }
-        MainView.cp.returnConnection(c);
+        return false;
+    }
+
+    @Override
+    public boolean userIdExist(int userId) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from user_table where user_id = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, userId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()){
+                    return true;
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
         return false;
     }
 
     @Override
     public boolean userStaffIdExist(int inputStaffId) throws Exception {
-        Connection c = MainView.cp.getConnection();
-        String sql = "select ustaff_id from user_table";
-        PreparedStatement ps = c.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            if (rs.getInt("ustaff_id") == inputStaffId) {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from user_table where ustaff_id = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, inputStaffId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()){
+                    return true;
+                }
                 MainView.cp.returnConnection(c);
-                return true;
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
             }
         }
-        MainView.cp.returnConnection(c);
         return false;
     }
 
     @Override
-    public boolean match(User inputUser) throws Exception {
+    public int match(User inputUser) throws Exception {
         Connection c = MainView.cp.getConnection();
         String sql = "select * from user_table";
         PreparedStatement ps = c.prepareStatement(sql);
@@ -74,23 +126,19 @@ public class UserDaoimpl implements UserDao {
                         MainView.currentUser = new User(rs.getInt(1),rs.getString(2),rs.getString(3),
                                 rs.getInt(4),rs.getInt(6));
                         MainView.currentUser.setOnwork(true);
-                        Print.print("登陆成功");
                         MainView.cp.returnConnection(c);
-                        return true;
+                        return 1;
                     } else {
-                        Print.print("您已离职，无法进入系统");
+                        return 2;
                     }
                 }
                 else {
-                    Print.print("密码输入有误，请重新输入");
+                    return 3;
                 }
-            }
-            else {
-                Print.print("用户名不存在，请重新输入");
             }
         }
         MainView.cp.returnConnection(c);
-        return false;
+        return 4;
     }
 
     @Override

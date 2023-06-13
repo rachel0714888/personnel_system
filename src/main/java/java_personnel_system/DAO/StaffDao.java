@@ -7,15 +7,69 @@ import java_personnel_system.pojo.Staff;
  * @date 2023/6/12 10:15
  */
 public interface StaffDao {
-    /**
-     * 通过员工身份证和手机号 判断增加的员工是否存在
-     *
-     * @param staffIdentityId 存入增加员工的身份证
-     * @param staffPhonenum   存入增加员工的手机号
-     * @return 存在返回true
-     * @throws Exception 向上抛出异常
+
+    /**判断员工id是否存在
+     * @param staffId 要判断的员工id
+     * @return 存在为true
+     * @throws Exception
      */
-    boolean staffExist(String staffIdentityId, String staffPhonenum) throws Exception;
+    boolean staffIdExist(int staffId) throws Exception;
+
+    /**判断员工名是否存在
+     * @param staffName 要判断的员工名
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffNameExist(String staffName) throws Exception;
+
+    /**判断员工性别是否存在
+     * @param staffSex 要判断的员工性别
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffSexExist(String staffSex) throws Exception;
+
+    /**判断部门id是否存在
+     * @param departmentId 要判断的部门id
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffDepartmentIdExist(int departmentId) throws Exception;
+
+    /**判断职位id是否存在
+     * @param positionId 要判断的职位id
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffPositionIdExist(int positionId) throws Exception;
+
+    /**判断民族是否存在
+     * @param nationName 要判断的民族
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffNationNameExist(String nationName) throws Exception;
+
+    /**判断教育背景是否存在
+     * @param educationName 要判断的教育背景
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffEducationNameExist(String educationName) throws Exception;
+
+    /**判断身份证是否存在
+     * @param identityId 要判断的身份证
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffIdentityIdNameExist(String identityId) throws Exception;
+
+    /**判断电话号是否存在
+     * @param phoneNum 要判断的电话号
+     * @return 存在为true
+     * @throws Exception
+     */
+    boolean staffPhoneNumNameExist(String phoneNum) throws Exception;
 
     /**
      * 增加员工
