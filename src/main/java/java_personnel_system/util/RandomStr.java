@@ -2,7 +2,7 @@ package java_personnel_system.util;
 
 import java.util.Random;
 
-/**
+/**验证码生成
  * @auther Rachel
  * @date 2023/6/11 19:21
  */

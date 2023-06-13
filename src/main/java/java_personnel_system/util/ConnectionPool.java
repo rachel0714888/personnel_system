@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/**数据库连接池 personnel_management_system
  * @auther Rachel
  * @date 2023/6/11 19:58
  */

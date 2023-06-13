@@ -2,7 +2,7 @@ package java_personnel_system.util;
 
 import java_personnel_system.pojo.*;
 
-/**
+/**所有的格式化打印语句
  * @auther Rachel
  * @date 2023/6/11 11:21
  */
@@ -12,7 +12,7 @@ public class Print {
         for (int i = 0; i < c.length; i++) {
             System.out.print(c[i]);
             try {
-                Thread.sleep(0);
+                Thread.sleep(80);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
