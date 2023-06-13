@@ -457,14 +457,12 @@ public class StaffDaoimpl implements StaffDao {
                 PreparedStatement ps = c.prepareStatement(sql);
                 ps.setString(1, staffName);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
                     Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
                             rs.getString(9), rs.getString(19),
                             rs.getString(17), rs.getString(12),
                             rs.getString(13), rs.getString(14),
                             rs.getString(15));
-                } else {
-                    Print.print("查无此人");
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -489,14 +487,12 @@ public class StaffDaoimpl implements StaffDao {
                 PreparedStatement ps = c.prepareStatement(sql);
                 ps.setString(1, staffSex);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
                     Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
                             rs.getString(9), rs.getString(19),
                             rs.getString(17), rs.getString(12),
                             rs.getString(13), rs.getString(14),
                             rs.getString(15));
-                } else {
-                    Print.print("查无此人");
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -521,15 +517,13 @@ public class StaffDaoimpl implements StaffDao {
                 PreparedStatement ps = c.prepareStatement(sql);
                 ps.setInt(1, sdepartmentId);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
                     Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
                             rs.getString(9), rs.getString(19),
                             rs.getString(17), rs.getString(12),
                             rs.getString(13), rs.getString(14),
                             rs.getString(15));
 
-                } else {
-                    Print.print("查无此人");
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -554,15 +548,13 @@ public class StaffDaoimpl implements StaffDao {
                 PreparedStatement ps = c.prepareStatement(sql);
                 ps.setInt(1, spositionId);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
                     Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
                             rs.getString(9), rs.getString(19),
                             rs.getString(17), rs.getString(12),
                             rs.getString(13), rs.getString(14),
                             rs.getString(15));
 
-                } else {
-                    Print.print("查无此人");
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -587,14 +579,12 @@ public class StaffDaoimpl implements StaffDao {
                 PreparedStatement ps = c.prepareStatement(sql);
                 ps.setString(1, staffNation);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
                     Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
                             rs.getString(9), rs.getString(19),
                             rs.getString(17), rs.getString(12),
                             rs.getString(13), rs.getString(14),
                             rs.getString(15));
-                } else {
-                    Print.print("查无此人");
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -619,14 +609,12 @@ public class StaffDaoimpl implements StaffDao {
                 PreparedStatement ps = c.prepareStatement(sql);
                 ps.setString(1, staffEducation);
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
                     Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
                             rs.getString(9), rs.getString(19),
                             rs.getString(17), rs.getString(12),
                             rs.getString(13), rs.getString(14),
                             rs.getString(15));
-                } else {
-                    Print.print("查无此人");
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -689,8 +677,6 @@ public class StaffDaoimpl implements StaffDao {
                             rs.getString(17), rs.getString(12),
                             rs.getString(13), rs.getString(14),
                             rs.getString(15));
-                } else {
-                    Print.print("查无此人");
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");

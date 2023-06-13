@@ -36,7 +36,7 @@ public class UserService {
             Print.print("验证码通过,正在验证用户名和密码,请稍后...");
             Thread.sleep(3000);
             int isLogin = userDao.match(inputUser);
-            if (isLogin==1) {
+            if (isLogin == 1) {
                 Print.print("登陆成功");
                 //登陆成功，判断权限，根据不同的权限进入不同的操作页面
                 int authority = MainView.currentUser.getUserAuthority();
@@ -48,13 +48,13 @@ public class UserService {
                     OrdinaryUserView.ordinaryUserView();
                 }
 
-            } else if (isLogin==2){
+            } else if (isLogin == 2) {
                 Print.print("用户已离职");
                 login();
-            }else if (isLogin==3){
+            } else if (isLogin == 3) {
                 Print.print("密码错误");
                 login();
-            }else if (isLogin==4){
+            } else if (isLogin == 4) {
                 Print.print("用户不存在");
                 login();
             }
@@ -92,10 +92,6 @@ public class UserService {
         boolean iswork = false;
         if (inputIswork == 1) {
             iswork = true;
-        } else if (inputIswork == 2) {
-        } else {
-            Print.print("输入错误，请重新输入");
-            userAdd();
         }
         Print.print("请输入您想要添加的用户的权限：");
         Print.print("1.人事部长权限");
@@ -105,12 +101,8 @@ public class UserService {
         int userAuthority = 2;
         if (inputUserAuthority == 1) {
             userAuthority = 1;
-        } else if (inputUserAuthority == 2) {
         } else if (inputUserAuthority == 3) {
             userAuthority = 5;
-        } else {
-            Print.print("输入错误，请重新输入");
-            userAdd();
         }
         //调用Dao的方法做数据库数据插入
         userDao.insert(new User(inputUserName, inputPassword, inputUserStaffId, iswork, userAuthority));
@@ -119,11 +111,10 @@ public class UserService {
     public synchronized static void userIdRemove() throws Exception {
         Print.print("请输入您想要删除的用户id：");
         int inputUserId = sc.nextInt();
-        if (userDao.userIdExist(inputUserId)){
+        if (userDao.userIdExist(inputUserId)) {
             userDao.idRemove(inputUserId);
             userDao.userTableAlter();
-        }
-        else {
+        } else {
             Print.print("用户不存在");
         }
     }
@@ -131,11 +122,10 @@ public class UserService {
     public synchronized static void userNameRemove() throws Exception {
         Print.print("请输入您想要删除的用户名：");
         String inputUserName = sc.nextLine();
-        if (userDao.userNameExist(inputUserName)){
+        if (userDao.userNameExist(inputUserName)) {
             userDao.nameRemove(inputUserName);
             userDao.userTableAlter();
-        }
-        else {
+        } else {
             Print.print("用户不存在");
         }
     }
@@ -143,11 +133,10 @@ public class UserService {
     public synchronized static void userStaffIdRemove() throws Exception {
         Print.print("请输入您想要删除的用户员工id：");
         int inputUserStaffId = sc.nextInt();
-        if (userDao.userStaffIdExist(inputUserStaffId)){
+        if (userDao.userStaffIdExist(inputUserStaffId)) {
             userDao.staffIdRemove(inputUserStaffId);
             userDao.userTableAlter();
-        }
-        else {
+        } else {
             Print.print("用户不存在");
         }
     }
@@ -173,7 +162,7 @@ public class UserService {
     public synchronized static void userChange() throws Exception {
         Print.print("请输入要修改的用户id：");
         int userId = sc.nextInt();
-        if (!userDao.userIdExist(userId)){
+        if (!userDao.userIdExist(userId)) {
             Print.print("用户不存在");
             userChange();
         }
@@ -204,12 +193,12 @@ public class UserService {
         userDao.userChange(new User(userId, userName, password, staffId, isOnwork, authority));
     }
 
-    public static void ordinaryUserMsgUpdate()throws Exception{
+    public static void ordinaryUserMsgUpdate() throws Exception {
         Print.print("请输入修改后的用户名：");
         String userName = sc.next();
         Print.print("请输入修改后的用户密码：");
         String password = sc.next();
-        userDao.ordinaryUserMsgUpdate(userName,password);
+        userDao.ordinaryUserMsgUpdate(userName, password);
     }
 
     public static void userAllSelect() throws Exception {
@@ -222,7 +211,7 @@ public class UserService {
     public static void userLikeNameSelect() throws Exception {
         Print.print("请输入要查询的用户名：");
         String userName = sc.next();
-        if (!userDao.userNameExist(userName)){
+        if (!userDao.userNameExist(userName)) {
             Print.print("用户不存在");
             userLikeNameSelect();
         }
@@ -243,7 +232,7 @@ public class UserService {
         Print.print("用户信息查询成功");
     }
 
-    public static int getUserStaffId(String userName)throws Exception{
+    public static int getUserStaffId(String userName) throws Exception {
         return userDao.selectUserStaffId(userName);
     }
 

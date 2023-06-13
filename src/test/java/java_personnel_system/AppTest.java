@@ -28,7 +28,7 @@ public class AppTest {
     /**
      * 用户添加
      *
-     * @throws Exception
+     * @throws Exception 抛出异常 
      */
     @Test
     public void userAdd() throws Exception {
@@ -38,7 +38,7 @@ public class AppTest {
     /**
      * 根据用户id删除用户
      *
-     * @throws Exception
+     * @throws Exception 抛出异常 
      */
     @Test
     public void userIdRemove() throws Exception {
@@ -46,7 +46,7 @@ public class AppTest {
     }
 
     /** 根据用户名删除用户
-     * @throws Exception
+     * @throws Exception 抛出异常 
      */
     @Test
     public void userNameRemove() throws Exception {
@@ -54,7 +54,7 @@ public class AppTest {
     }
 
     /** 根据用户的员工id删除用户
-     * @throws Exception
+     * @throws Exception 抛出异常 
      */
     @Test
     public void userStaffIdRemove() throws Exception {
@@ -62,7 +62,7 @@ public class AppTest {
     }
 
     /** 根据用户状态删除用户
-     * @throws Exception
+     * @throws Exception 抛出异常 
      */
     @Test
     public void userIsWorkRemove() throws Exception {
@@ -70,7 +70,7 @@ public class AppTest {
     }
 
      /** 更改用户数据（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常 
       */
      @Test
      public void userChange() throws Exception {
@@ -78,7 +78,7 @@ public class AppTest {
      }
 
      /** 更改用户数据（权限2）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void ordinaryUserMsgUpdate() throws Exception {
@@ -86,7 +86,7 @@ public class AppTest {
      }
 
      /** 查看所有用户数据（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void userAllSelect() throws Exception {
@@ -94,7 +94,7 @@ public class AppTest {
      }
 
      /** 根据用户名模糊查询用户数据（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void userLikeNameSelect() throws Exception {
@@ -102,7 +102,7 @@ public class AppTest {
      }
 
      /** 根据用户工作状态查询用户数据（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void userLikeIsOnworkSelect() throws Exception {
@@ -110,7 +110,7 @@ public class AppTest {
      }
 
      /** 添加员工（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void addStaff() throws Exception {
@@ -118,7 +118,7 @@ public class AppTest {
      }
 
      /** 根据员工id删除员工（权限0、1）
-      * @throws Exception                             
+      * @throws Exception 抛出异常                             
       */                                              
      @Test                                            
      public void removeStaffId() throws Exception {   
@@ -126,7 +126,7 @@ public class AppTest {
      }
 
      /** 根据员工姓名删除员工（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void removeStaffName() throws Exception {
@@ -134,7 +134,7 @@ public class AppTest {
      }
 
      /** 输入员工id，更改该员工的员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void updateStaffMsg() throws Exception {
@@ -142,7 +142,7 @@ public class AppTest {
      }
 
      /** 更改当前用户的员工信息（权限2）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void ordinaryUserUpdateStaffMsg() throws Exception {
@@ -150,7 +150,7 @@ public class AppTest {
      }
 
      /** 查询所有员工员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectAllStaffMsg() throws Exception {
@@ -158,7 +158,7 @@ public class AppTest {
      }
 
      /** 根据员工id查询员工信息（权限0、1）                             
-      * @throws Exception                            
+      * @throws Exception 抛出异常                            
       */                                             
      @Test                                           
      public void selectStaffId() throws Exception {  
@@ -166,7 +166,7 @@ public class AppTest {
      }
 
      /** 查询当前用户的员工信息（权限2）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffIdNoInput() throws Exception {
@@ -174,7 +174,7 @@ public class AppTest {
      }
 
      /** 根据员工姓名查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffName() throws Exception {
@@ -182,7 +182,7 @@ public class AppTest {
      }
 
      /** 根据员工性别查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffSex() throws Exception {
@@ -190,7 +190,7 @@ public class AppTest {
      }
 
      /** 根据员工部门id查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffDepartmentId() throws Exception {
@@ -198,7 +198,7 @@ public class AppTest {
      }
 
      /** 根据员工职位id查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffPrositionId() throws Exception {
@@ -206,7 +206,7 @@ public class AppTest {
      }
 
      /** 根据员工民族查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffNation() throws Exception {
@@ -214,7 +214,7 @@ public class AppTest {
      }
 
      /** 根据员工教育背景查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffEducation() throws Exception {
@@ -222,7 +222,7 @@ public class AppTest {
      }
 
      /** 根据员工身份证查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffIdentityId() throws Exception {
@@ -230,7 +230,7 @@ public class AppTest {
      }
 
      /** 根据员工手机号查询员工信息（权限0、1）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void selectStaffPhonenum() throws Exception {
@@ -238,7 +238,7 @@ public class AppTest {
      }
 
      /** 增加职位（权限0）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void addPosition() throws Exception {
@@ -246,7 +246,7 @@ public class AppTest {
      }
 
      /** 根据职位id删除职位（权限0）
-      * @throws Exception
+      * @throws Exception 抛出异常
       */
      @Test
      public void removePositionId() throws Exception {
@@ -254,7 +254,7 @@ public class AppTest {
      }
 
     /** 根据职位名删除职位（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void removePositionName() throws Exception {
@@ -262,7 +262,7 @@ public class AppTest {
     }
 
     /** 根据职位id修改对应的职位名（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void changePositionMsg() throws Exception {
@@ -270,7 +270,7 @@ public class AppTest {
     }
 
     /** 查询所有职位信息（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void selectAllPositionMsg() throws Exception {
@@ -278,7 +278,7 @@ public class AppTest {
     }
 
     /** 根据职位名查询职位信息（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void selectLikePositionName() throws Exception {
@@ -286,7 +286,7 @@ public class AppTest {
     }
 
     /** 发布公告（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void addNotice() throws Exception {
@@ -294,7 +294,7 @@ public class AppTest {
     }
 
     /** 删除公告（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void removeNotice() throws Exception {
@@ -302,7 +302,7 @@ public class AppTest {
     }
 
     /** 根据公告id更改对应公告（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void updateNotice() throws Exception {
@@ -310,7 +310,7 @@ public class AppTest {
     }
 
     /** 查看所有公告（权限0、1、2）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void selectAllNotice() throws Exception {
@@ -318,7 +318,7 @@ public class AppTest {
     }
 
     /** 根据公告名查看对应公告（权限0、1、2）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void selectNoticeName() throws Exception {
@@ -326,7 +326,7 @@ public class AppTest {
     }
 
     /** 根据公告内容查看对应公告（权限0、1、2）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void selectNoticeContent() throws Exception {
@@ -334,7 +334,7 @@ public class AppTest {
     }
 
     /** 增加部门（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void addDepartment() throws Exception {
@@ -342,7 +342,7 @@ public class AppTest {
     }
 
     /** 根据部门id删除部门（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void removeDepartmentId() throws Exception {
@@ -350,7 +350,7 @@ public class AppTest {
     }
 
     /** 根据部门名删除部门（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void removeDepartmentName() throws Exception {
@@ -358,7 +358,7 @@ public class AppTest {
     }
 
     /** 根据部门id修改对应部门信息（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void changeDepartmentMsg() throws Exception {
@@ -366,7 +366,7 @@ public class AppTest {
     }
 
     /** 查看所有部门信息（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void selectAllDepartmentMsg() throws Exception {
@@ -374,7 +374,7 @@ public class AppTest {
     }
 
     /** 根据部门名查看部门信息（权限0）
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     @Test
     public void selectLikeDepartmentName() throws Exception {
