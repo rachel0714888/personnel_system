@@ -8,6 +8,20 @@ import java_personnel_system.pojo.Department;
  */
 public interface DepartmentDao {
 
+    /**判断这个部门id的部门还有人吗
+     * @param departmentId 部门id
+     * @return 有返回true
+     * @throws Exception
+     */
+    boolean isdepartmentIdHaveStaff(int departmentId) throws Exception;
+
+    /**判断这个部门名的部门还有人吗
+     * @param departmentName 部门名
+     * @return 有返回true
+     * @throws Exception
+     */
+    boolean isdepartmentNameHaveStaff(String departmentName) throws Exception;
+
     /**
      * 增加一个新的部门
      *

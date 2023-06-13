@@ -395,11 +395,11 @@ public class StaffDaoimpl implements StaffDao {
                 PreparedStatement ps = c.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
                 }
                 MainView.cp.returnConnection(c);
             } else {
@@ -426,11 +426,11 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setInt(1, staffId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
                 } else {
                     Print.print("查无此人");
                 }
@@ -458,11 +458,12 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setString(1, staffName);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
+
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -488,11 +489,11 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setString(1, staffSex);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -518,11 +519,12 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setInt(1, sdepartmentId);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
+
 
                 }
             } else {
@@ -549,11 +551,12 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setInt(1, spositionId);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
+
 
                 }
             } else {
@@ -580,11 +583,12 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setString(1, staffNation);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
+
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -610,11 +614,12 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setString(1, staffEducation);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
+
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");
@@ -635,16 +640,17 @@ public class StaffDaoimpl implements StaffDao {
             locked = lock.tryLock(3, TimeUnit.SECONDS);
             if (locked) {
                 Connection c = MainView.cp.getConnection();
-                String sql = "select * from staff_msg where staff_identifyid = ?";
+                String sql = "select * from staff_msg where staff_identityid = ?";
                 PreparedStatement ps = c.prepareStatement(sql);
                 ps.setString(1, staffIdentityId);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
+
                 } else {
                     Print.print("查无此人");
                 }
@@ -672,11 +678,12 @@ public class StaffDaoimpl implements StaffDao {
                 ps.setString(1, staffPhonenum);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    Print.staffAllMsgPrint(rs.getInt(4), rs.getString(8),
-                            rs.getString(9), rs.getString(19),
-                            rs.getString(17), rs.getString(12),
-                            rs.getString(13), rs.getString(14),
-                            rs.getString(15));
+                    Print.staffAllMsgPrint(rs.getInt("staff_id"), rs.getString("staff_name"),
+                            rs.getString("staff_sex"), rs.getString("department_name"),
+                            rs.getString("position_name"), rs.getString("staff_nation"),
+                            rs.getString("staff_education"), rs.getString("staff_identityid"),
+                            rs.getString("staff_phonenum"));
+
                 }
             } else {
                 Print.print("网络繁忙，请稍后再试");

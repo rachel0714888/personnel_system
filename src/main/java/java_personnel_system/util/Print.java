@@ -56,7 +56,7 @@ public class Print {
 
     public static void staffAllMsgPrint(int staffid, String staffName, String staffSex, String staffDepartment, String staffPosition,
                                         String staffNation,String staffEducation,String staffIdentity,String staffPhonenum) {
-        print("员工id：" + staffid + " 员工姓名：" + staffName + " 员工性别：" +
+        print("员工id：" + staffid + " 员工姓名：" + staffName + " 员工性别：" + staffSex +
                 " 员工部门：" + staffDepartment + " 员工职位：" + staffPosition + " 民族:" + staffNation
                 + " 教育背景：" + staffEducation + " 身份证号：" + staffIdentity + " 手机号:" + staffPhonenum);
     }

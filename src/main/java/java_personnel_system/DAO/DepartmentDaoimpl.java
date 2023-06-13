@@ -218,4 +218,64 @@ public class DepartmentDaoimpl implements DepartmentDao {
         }
         return 0;
     }
+
+    @Override
+    public boolean isdepartmentIdHaveStaff(int departmentId) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_msg where department_id = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setInt(1, departmentId);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                } else {
+                    Print.print("部门不存在");
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isdepartmentNameHaveStaff(String departmentName) throws Exception {
+        boolean locked = false;
+        try {
+            locked = lock.tryLock(3, TimeUnit.SECONDS);
+            if (locked) {
+                Connection c = MainView.cp.getConnection();
+                String sql = "select * from staff_msg where department_name = ?";
+                PreparedStatement ps = c.prepareStatement(sql);
+                ps.setString(1, departmentName);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                } else {
+                    Print.print("部门不存在");
+                }
+                MainView.cp.returnConnection(c);
+            } else {
+                Print.print("网络繁忙，请稍后再进行操作");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (locked) {
+                lock.unlock();
+            }
+        }
+        return false;
+    }
 }

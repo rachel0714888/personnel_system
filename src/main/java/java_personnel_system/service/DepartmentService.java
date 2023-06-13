@@ -35,14 +35,16 @@ public class DepartmentService {
             Print.print("部门不存在，请重新输入");
             removeDepartmentId();
         }
-        Print.print("该部门还有员工，请确认是否删除");
-        Print.print("1.是");
-        Print.print("2.否");
-        int confirm = sc.nextInt();
-        if (confirm==1){
-            staffDao.autoUpdateStaffDepartmentId(departmentId);
-            departmentDao.removeDepartmentId(departmentId);
-            departmentDao.departmentAlter();
+        if (departmentDao.isdepartmentIdHaveStaff(departmentId)){
+            Print.print("该部门还有员工，请确认是否删除");
+            Print.print("1.是");
+            Print.print("2.否");
+            int confirm = sc.nextInt();
+            if (confirm==1){
+                staffDao.autoUpdateStaffDepartmentId(departmentId);
+                departmentDao.removeDepartmentId(departmentId);
+                departmentDao.departmentAlter();
+            }
         }
     }
 
@@ -53,14 +55,16 @@ public class DepartmentService {
             Print.print("部门不存在，请重新输入");
             removeDepartmentName();
         }
-        Print.print("该部门还有员工，请确认是否删除");
-        Print.print("1.是");
-        Print.print("2.否");
-        int confirm = sc.nextInt();
-        if (confirm==1){
-            staffDao.autoUpdateStaffDepartmentId(departmentDao.selectLikeDepartmentNameNoPrint(departmentName));
-            departmentDao.removeDepartmentName(departmentName);
-            departmentDao.departmentAlter();
+        if (departmentDao.isdepartmentNameHaveStaff(departmentName)){
+            Print.print("该部门还有员工，请确认是否删除");
+            Print.print("1.是");
+            Print.print("2.否");
+            int confirm = sc.nextInt();
+            if (confirm==1){
+                staffDao.autoUpdateStaffDepartmentId(departmentDao.selectLikeDepartmentNameNoPrint(departmentName));
+                departmentDao.removeDepartmentName(departmentName);
+                departmentDao.departmentAlter();
+            }
         }
     }
 
